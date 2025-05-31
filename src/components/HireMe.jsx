@@ -15,12 +15,12 @@ const HireMe = () => {
 
         <Row className="justify-content-center">
           <Col xs="auto">
-            <a href="/SrikaranS_Resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a href={`${process.env.PUBLIC_URL}/SrikaranS_Resume.pdf`} target="_blank" rel="noopener noreferrer">
               <Button variant="light" className="me-3 px-4">
                 View Resume
               </Button>
             </a>
-            <a href="/SrikaranS_Resume.pdf" download>
+            <a href={`${process.env.PUBLIC_URL}/SrikaranS_Resume.pdf`} download>
               <Button variant="outline-light" className="px-4">
                 Download Resume
               </Button>
