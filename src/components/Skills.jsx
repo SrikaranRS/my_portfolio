@@ -1,48 +1,118 @@
 import React from 'react';
-import { Container, Row, Col, ProgressBar, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Badge } from 'react-bootstrap';
 import {
-  FaReact, FaJava, FaHtml5, FaCss3Alt, FaGitAlt,
-  FaNodeJs, FaDatabase, FaBootstrap, FaTools
+  FaReact,
+  FaJava,
+  FaHtml5,
+  FaCss3Alt,
+  FaGitAlt,
+  FaDatabase,
+  FaCode,
+  FaServer,
+  FaProjectDiagram,
+  FaUsers,
 } from 'react-icons/fa';
-import { SiJavascript, SiSpringboot, SiMysql, SiMongodb } from 'react-icons/si';
+
+import {
+  SiJavascript,
+  SiSpringboot,
+  SiOracle,
+} from 'react-icons/si';
 
 const skills = [
   {
     category: 'Frontend',
     icon: <FaReact />,
     items: [
-      { name: 'ReactJS', level: 90 },
-      { name: 'JavaScript', level: 85, icon: <SiJavascript /> },
-      { name: 'HTML5', level: 95, icon: <FaHtml5 /> },
-      { name: 'CSS3', level: 90, icon: <FaCss3Alt /> },
-      { name: 'Bootstrap', level: 80, icon: <FaBootstrap /> },
+      {
+        name: 'React.js',
+        icon: <FaReact />,
+      },
+      {
+        name: 'JavaScript (ES6+)',
+        icon: <SiJavascript />,
+      },
+      {
+        name: 'ExtJS',
+        icon: <FaCode />,
+      },
+      {
+        name: 'HTML5',
+        icon: <FaHtml5 />,
+      },
+      {
+        name: 'CSS3',
+        icon: <FaCss3Alt />,
+      },
     ],
   },
+
   {
     category: 'Backend',
     icon: <FaJava />,
     items: [
-      { name: 'Java', level: 85 },
-      { name: 'Spring Boot', level: 80, icon: <SiSpringboot /> },
-      { name: 'REST APIs', level: 90 },
-      { name: 'Node.js', level: 60, icon: <FaNodeJs /> },
+      {
+        name: 'Java',
+        icon: <FaJava />,
+      },
+      {
+        name: 'Spring Boot',
+        icon: <SiSpringboot />,
+      },
+      {
+        name: 'RESTful API Design',
+        icon: <FaServer />,
+      },
+      {
+        name: 'Microservices Architecture',
+        icon: <FaProjectDiagram />,
+      },
     ],
   },
+
   {
     category: 'Database',
     icon: <FaDatabase />,
     items: [
-      { name: 'MySQL', level: 85, icon: <SiMysql /> },
-      { name: 'MongoDB', level: 65, icon: <SiMongodb /> },
+      {
+        name: 'Oracle',
+        icon: <SiOracle />,
+      },
+      {
+        name: 'PL/SQL',
+        icon: <FaDatabase />,
+      },
+      {
+        name: 'Stored Procedures',
+        icon: <FaDatabase />,
+      },
+      {
+        name: 'Data Integrity',
+        icon: <FaDatabase />,
+      },
     ],
   },
+
   {
-    category: 'Tools & Others',
-    icon: <FaTools />,
+    category: 'Tools & Practices',
+   // icon: <FaTools />,
     items: [
-      { name: 'Git & GitHub', level: 90, icon: <FaGitAlt /> },
-      { name: 'Postman', level: 85 },
-      { name: 'VS Code', level: 95 },
+      {
+        name: 'Git',
+        icon: <FaGitAlt />,
+      },
+      {
+        name: 'CRQ / Change Management',
+        icon: <FaProjectDiagram />,
+      },
+      {
+        name: 'Production Deployment',
+        icon: <FaServer />,
+      },
+      {
+        name: 'Agile / Scrum',
+        icon: <FaUsers />,
+      },
     ],
   },
 ];
@@ -51,26 +121,49 @@ const Skills = () => {
   return (
     <section id="skills" className="skills-section py-5">
       <Container>
-        <h2 className="text-center mb-5">My Skills</h2>
+        <h2 className="text-center mb-3">
+          Technical Skills
+        </h2>
+
+        <p className="text-center text-muted mb-5">
+          Technologies and engineering practices I work with
+          across full stack and enterprise applications.
+        </p>
+
         <Row className="g-4">
           {skills.map((block, index) => (
             <Col md={6} key={index}>
-              <div className="skill-block p-4 rounded shadow-sm bg-white text-dark">
+              <div
+                className="skill-block p-4 rounded shadow-sm bg-white text-dark h-100"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
                 <h5 className="d-flex align-items-center gap-2 mb-4 text-primary">
-                  {block.icon} {block.category}
+                  <span className="fs-4">
+                    {block.icon}
+                  </span>
+
+                  {block.category}
                 </h5>
-                {block.items.map((skill, idx) => (
-                  <div key={idx} className="mb-3">
-                    <div className="d-flex justify-content-between align-items-center mb-1">
-                      <span className="fw-semibold">
-                        {skill.icon && <span className="me-2">{skill.icon}</span>}
-                        {skill.name}
-                      </span>
-                      <Badge bg="primary">{skill.level}%</Badge>
-                    </div>
-                    <ProgressBar now={skill.level} variant="primary" animated />
-                  </div>
-                ))}
+
+                <div className="d-flex flex-wrap gap-2">
+                  {block.items.map((skill, idx) => (
+                    <Badge
+                      key={idx}
+                      bg="light"
+                      text="dark"
+                      className="skill-badge px-3 py-2 border"
+                    >
+                      {skill.icon && (
+                        <span className="me-2">
+                          {skill.icon}
+                        </span>
+                      )}
+
+                      {skill.name}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             </Col>
           ))}
